@@ -1,25 +1,36 @@
 export type Level = 'beginner' | 'elementary' | 'intermediate' | 'upper-intermediate';
 
-export type FamilyMember = {
+export interface FamilyMember {
   id: string;
   name: string;
   level: Level;
   dailyGoal: number;
-  checkedInToday: boolean;
   streakDays: number;
   todayScore: number;
-  weeklyScore: number;
-  badges: string[];
-};
+  checkedInToday: boolean;
+}
 
 export const INITIAL_FAMILY_DATA: FamilyMember[] = [
-  { id: '1', name: 'Parent A', level: 'upper-intermediate', dailyGoal: 50, checkedInToday: false, streakDays: 5, todayScore: 30, weeklyScore: 210, badges: ['🔥'] },
-  { id: '2', name: 'Parent B', level: 'intermediate', dailyGoal: 30, checkedInToday: true, streakDays: 12, todayScore: 30, weeklyScore: 180, badges: ['🏆'] },
-  { id: '3', name: 'Child A', level: 'elementary', dailyGoal: 20, checkedInToday: false, streakDays: 3, todayScore: 15, weeklyScore: 90, badges: [] },
-  { id: '4', name: 'Child B', level: 'beginner', dailyGoal: 10, checkedInToday: true, streakDays: 7, todayScore: 10, weeklyScore: 60, badges: ['🌟'] },
+  { id: '1', name: 'Dad', level: 'upper-intermediate', dailyGoal: 50, streakDays: 5, todayScore: 30, checkedInToday: false },
+  { id: '2', name: 'Mom', level: 'intermediate', dailyGoal: 30, streakDays: 12, todayScore: 30, checkedInToday: true },
+  { id: '3', name: 'Emma', level: 'elementary', dailyGoal: 20, streakDays: 3, todayScore: 15, checkedInToday: false },
+  { id: '4', name: 'Leo', level: 'beginner', dailyGoal: 10, streakDays: 7, todayScore: 10, checkedInToday: true },
 ];
 
 export const VOCAB_BATTLES = [
-  { id: '1', challenger: 'Parent A', opponent: 'Parent B', status: 'In Progress' },
-  { id: '2', challenger: 'Child A', opponent: 'Child B', status: 'Waiting' }
+  { id: '1', challenger: 'Dad', opponent: 'Mom', status: 'In Progress' },
+  { id: '2', challenger: 'Emma', opponent: 'Leo', status: 'Waiting' }
 ];
+export const getReviewQueue = (history: any[]) => {
+  const counts: Record<string, number> = {};
+  history.forEach(h => {
+    h.reviewNeededWords?.forEach((w: string) => {
+      counts[w] = (counts[w] || 0) + 1;
+    });
+  });
+  
+  // Rank by frequency then recency
+  return Object.keys(counts)
+    .sort((a, b) => counts[b] - counts[a])
+    .slice(0, 5);
+};

@@ -42,14 +42,10 @@ export default function GameCard() {
           </div>
 
           <div className="border-t border-[var(--border-subtle)] pt-6">
-            <h4 className="text-[12px] font-[510] text-[var(--text-tertiary)] uppercase mb-3">Examples</h4>
-            <ul className="space-y-2">
-              {item.examples.map((ex, i) => (
-                <li key={i} className="text-sm text-[var(--text-secondary)] font-mono opacity-80 italic">
-                  — {ex}
-                </li>
-              ))}
-            </ul>
+            <h4 className="text-[12px] font-[510] text-[var(--text-tertiary)] uppercase mb-3">Example</h4>
+            <p className="text-sm text-[var(--text-secondary)] font-mono opacity-80 italic">
+              — {item.familyExample}
+            </p>
           </div>
         </motion.div>
       </AnimatePresence>

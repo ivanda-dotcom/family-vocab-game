@@ -1,39 +1,55 @@
-import Layout from '../components/Layout';
 import Link from 'next/link';
 
 export default function Home() {
   const cards = [
-    { title: 'Family Battles', desc: '與家人挑戰對戰', href: '/battles', color: 'bg-indigo-500' },
-    { title: 'Progress Tracking', desc: '查看學習成長', href: '/dashboard', color: 'bg-sky-500' },
-    { title: 'Vocabulary Practice', desc: '快速練習 (Coming Soon)', href: '#', color: 'bg-amber-500', disabled: true },
+    { title: 'Family Battles', desc: 'Pick a matchup and race through a short word challenge.', href: '/battles', color: 'bg-indigo-500' },
+    { title: 'Progress Center', desc: 'See scores, recent battles, and signs of improvement.', href: '/dashboard', color: 'bg-sky-500' },
+    { title: 'Quick Practice', desc: 'A lighter solo mode is coming soon.', href: '#', color: 'bg-amber-500', disabled: true },
   ];
 
   return (
-    <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-amber-50 pt-16 px-4 pb-20">
-        <header className="text-center mb-16">
-          <h1 className="text-5xl font-extrabold text-indigo-950 mb-4 tracking-tight">Family Vocab</h1>
-          <p className="text-xl text-indigo-700/80 mb-8 max-w-sm mx-auto">讓英文單字成為家庭樂趣，與家人一起挑戰成長。</p>
-          <div className="flex flex-col gap-3 max-w-xs mx-auto">
-            <Link href="/battles" className="bg-indigo-600 text-white font-bold py-4 px-8 rounded-2xl shadow-lg shadow-indigo-200 active:scale-95 transition-transform">
-              Start Family Challenge
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-indigo-50 px-4 py-8">
+      <main className="mx-auto max-w-5xl">
+        <header className="mb-16 text-center">
+          <h1 className="mb-4 text-4xl font-extrabold tracking-tight text-indigo-950 sm:text-6xl">Family Vocab</h1>
+          <p className="mx-auto mb-8 max-w-lg text-lg text-indigo-700/80">每天 5 分鐘的親子英文挑戰。和孩子一起聽、選、唸、複習，把英文單字變成家庭遊戲。</p>
+          <div className="mx-auto flex max-w-sm flex-col gap-3">
+            <Link href="/battles" className="flex min-h-[48px] items-center justify-center rounded-2xl bg-indigo-600 px-8 py-4 font-bold text-white shadow-md hover:bg-indigo-700">
+              開始今日家庭挑戰
             </Link>
-            <Link href="/dashboard" className="bg-white text-indigo-700 font-semibold py-4 px-8 rounded-2xl border border-indigo-100 shadow-sm">
-              View Progress
+            <Link href="/dashboard" className="flex min-h-[48px] items-center justify-center rounded-2xl border border-indigo-100 bg-white px-8 py-4 font-bold text-indigo-700 hover:bg-indigo-50">
+              查看家庭學習進度
             </Link>
           </div>
         </header>
 
-        <div className="grid gap-6 max-w-sm mx-auto">
+        <section className="mx-auto grid max-w-3xl gap-6 md:grid-cols-3">
           {cards.map((card, i) => (
-            <Link key={i} href={card.href} className={`p-6 rounded-3xl ${card.disabled ? 'opacity-60 cursor-not-allowed' : 'bg-white shadow-xl shadow-indigo-50/50 hover:-translate-y-1 transition-all'}`}>
-              <div className={`w-12 h-12 ${card.color} rounded-2xl mb-4`} />
-              <h3 className="text-xl font-bold text-gray-900 mb-1">{card.title}</h3>
-              <p className="text-gray-500">{card.desc}</p>
+            <Link key={i} href={card.href} className={`rounded-3xl border border-white/70 bg-white/90 p-6 shadow-lg shadow-indigo-100/40 transition-all ${card.disabled ? 'opacity-60 cursor-not-allowed' : 'hover:-translate-y-1 hover:shadow-xl'}`}>
+              <div className={`mb-4 h-12 w-12 ${card.color} rounded-2xl`} />
+              <h3 className="mb-1 text-lg font-bold text-gray-900">{card.title}</h3>
+              <p className="text-sm text-gray-500">{card.desc}</p>
             </Link>
           ))}
-        </div>
-      </div>
-    </Layout>
+        </section>
+
+        <section className="mb-16">
+          <h2 className="mb-8 text-center text-2xl font-bold text-gray-900">How Family Vocab Works</h2>
+          <div className="grid gap-6 md:grid-cols-3">
+            {[
+              { title: 'Choose a member', desc: 'Pick who is playing and start their personalized journey.' },
+              { title: '5-min challenge', desc: 'Complete quick, fun word battles together.' },
+              { title: 'Review & Grow', desc: 'Master missed words and keep your family streak alive.' }
+            ].map((step, i) => (
+              <div key={i} className="rounded-3xl border border-white/70 bg-white/90 p-6 shadow-sm">
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-indigo-100 font-bold text-indigo-600">{i + 1}</div>
+                <h3 className="mb-2 font-bold text-gray-900">{step.title}</h3>
+                <p className="text-sm text-gray-500">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </main>
+    </div>
   );
 }
