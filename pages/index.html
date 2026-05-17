@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Family Vocab Game</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #08090a;
+      --panel: #0f1011;
+      --surface: #191a1b;
+      --text-main: #f7f8f8;
+      --text-dim: #d0d6e0;
+      --text-muted: #8a8f98;
+      --accent: #5e6ad2;
+      --border: rgba(255, 255, 255, 0.08);
+    }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    h1 {
+      font-weight: 510;
+      letter-spacing: -0.7px;
+      margin-bottom: 24px;
+    }
+    .member-list {
+      display: grid;
+      gap: 12px;
+    }
+    .member-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      padding: 16px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.2s;
+    }
+    .member-card:hover {
+      background: rgba(255,255,255,0.05);
+    }
+    .btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 510;
+      cursor: pointer;
+      margin-top: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Family Vocab Game</h1>
+    <div class="member-list" id="member-list"></div>
+    <button class="btn" onclick="startGame()">Start Training</button>
+  </div>
+
+  <script>
+    const members = ["Eason", "Chris", "Doll", "Ivan"];
+    const list = document.getElementById('member-list');
+    members.forEach(m => {
+      const div = document.createElement('div');
+      div.className = 'member-card';
+      div.innerHTML = `<span>${m}</span><span style="color:var(--text-muted)">Level 1</span>`;
+      list.appendChild(div);
+    });
+    function startGame() { alert('Game starting...'); }
+  </script>
+</body>
+</html>

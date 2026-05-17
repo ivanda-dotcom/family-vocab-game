@@ -1,0 +1,39 @@
+/* Linear-Style Design System */
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-marketing: #08090a;
+    --bg-panel: #0f1011;
+    --bg-surface: #191a1b;
+    --text-primary: #f7f8f8;
+    --text-secondary: #d0d6e0;
+    --text-tertiary: #8a8f98;
+    --brand-indigo: #5e6ad2;
+    --accent-violet: #7170ff;
+    --border-subtle: rgba(255, 255, 255, 0.05);
+    --border-standard: rgba(255, 255, 255, 0.08);
+  }
+
+  body {
+    background-color: var(--bg-marketing);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: 'cv01', 'ss03';
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer components {
+  .linear-card {
+    @apply bg-[rgba(255,255,255,0.02)] border border-[var(--border-standard)] rounded-lg shadow-sm transition-all duration-200;
+  }
+  
+  .linear-button-primary {
+    @apply bg-[var(--brand-indigo)] text-white font-[510] px-4 py-2 rounded-md hover:bg-[var(--accent-violet)] transition-colors;
+  }
+
+  .linear-button-ghost {
+    @apply bg-[rgba(255,255,255,0.02)] text-[var(--text-secondary)] border border-[var(--border-standard)] rounded-md hover:bg-[rgba(255,255,255,0.05)] transition-all;
+  }
+}

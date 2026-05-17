@@ -1,0 +1,8 @@
+[
+  {"word": "Abundant", "level": 3, "options": ["豐富的", "稀少的", "快速的", "慢的"], "answer": "豐富的", "example": "Water is abundant here."},
+  {"word": "Benevolent", "level": 3, "options": ["仁慈的", "邪惡的", "自私的", "聰明的"], "answer": "仁慈的", "example": "The benevolent king helped everyone."},
+  {"word": "Coherent", "level": 2, "options": ["連貫的", "混亂的", "巨大的", "微小的"], "answer": "連貫的", "example": "Her speech was clear and coherent."},
+  {"word": "Diligent", "level": 2, "options": ["勤奮的", "懶惰的", "昂貴的", "便宜的"], "answer": "勤奮的", "example": "He is a diligent student."},
+  {"word": "Eager", "level": 1, "options": ["渴望的", "無聊的", "憤怒的", "悲傷的"], "answer": "渴望的", "example": "I am eager to learn."},
+  {"word": "Fast", "level": 1, "options": ["快的", "慢的", "大的", "小的"], "answer": "快的", "example": "The car is fast."}
+]
