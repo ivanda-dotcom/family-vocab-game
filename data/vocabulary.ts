@@ -53,5 +53,50 @@ export const VOCAB_DATA: VocabItem[] = [
     level: 'elementary',
     category: 'Daily Routine',
     familyExample: 'Our morning routine includes breakfast and reading.'
+  },
+  {
+    id: '6',
+    word: 'Navigate',
+    definition: 'To plan and direct the route or course.',
+    zhHint: '導航、引導',
+    level: 'intermediate',
+    category: 'Travel',
+    familyExample: 'Dad will navigate us to the park.'
+  },
+  {
+    id: '7',
+    word: 'Appreciate',
+    definition: 'To recognize the full worth of something.',
+    zhHint: '欣賞、感激',
+    level: 'elementary',
+    category: 'Emotion',
+    familyExample: 'We appreciate the nice dinner Mom made.'
+  },
+  {
+    id: '8',
+    word: 'Curious',
+    definition: 'Eager to know or learn something.',
+    zhHint: '好奇的',
+    level: 'beginner',
+    category: 'Personality',
+    familyExample: 'Leo is curious about the bugs in the garden.'
+  },
+  {
+    id: '9',
+    word: 'Generous',
+    definition: 'Showing a readiness to give more of something than is strictly necessary.',
+    zhHint: '慷慨的',
+    level: 'intermediate',
+    category: 'Personality',
+    familyExample: 'Sharing toys makes you a generous person.'
+  },
+  {
+    id: '10',
+    word: 'Challenge',
+    definition: 'A task or situation that tests someone\'s abilities.',
+    zhHint: '挑戰',
+    level: 'elementary',
+    category: 'Life Skills',
+    familyExample: 'Learning a new word is a fun challenge!'
   }
 ];

@@ -29,7 +29,9 @@ export default function Dashboard() {
   } : null;
 
   const reviewWords = getReviewQueue(history);
-  const mastered = Array.from(new Set(history.flatMap(h => h.masteredWords || []))).slice(0, 5);
+  const recentlyMastered = Array.from(new Set(history.flatMap(h => h.masteredWords || []))).slice(0, 5);
+
+  const plan = reviewWords.length > 0 ? "Review your trouble words to level up!" : "Keep the streak alive!";
 
   const resetProgress = () => {
     if (confirm("Are you sure? This will clear all your learning history.")) {
@@ -45,40 +47,38 @@ export default function Dashboard() {
       <main className="mx-auto max-w-5xl">
         <header className="mb-10 flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Progress Center</h1>
+            <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
             <p className="text-gray-500">Track your family's growth.</p>
           </div>
           <Link href="/" className="rounded-xl border border-gray-200 px-4 py-2 font-bold text-gray-600 hover:bg-gray-50">Home</Link>
         </header>
 
         <section className="mb-10 rounded-3xl border border-indigo-100 bg-white p-6 shadow-sm">
-          <h2 className="mb-4 text-xl font-bold text-indigo-900">Family Strategy</h2>
-          <p className="text-indigo-800">
-            {history.length === 0 ? "Ready to start? Complete your first 5-minute family challenge today!" 
-             : reviewWords.length > 0 ? `Emma and Leo, try reviewing: ${reviewWords[0]}. It will make you stronger!`
-             : "Great job family! Why not try a new challenge together?"}
+          <h2 className="mb-4 text-xl font-bold text-indigo-900">Today's Family Plan</h2>
+          <p className="text-indigo-800 text-lg">
+            {plan}
           </p>
         </section>
 
-        <section className="mb-8">
+        <div className="grid md:grid-cols-2 gap-8">
+          <section>
             <h2 className="mb-4 text-2xl font-bold text-gray-900">Review Queue</h2>
             {reviewWords.length > 0 ? (
                 <div className="grid gap-3">{reviewWords.map(w => <div key={w} className="p-4 bg-orange-50 border border-orange-100 rounded-2xl font-bold text-orange-900">{w}</div>)}</div>
             ) : <p className="text-gray-400 italic">No words need review! Great job.</p>}
-        </section>
+          </section>
 
-        <section className="mb-8">
+          <section>
             <h2 className="mb-4 text-2xl font-bold text-gray-900">Recently Mastered</h2>
-            {mastered.length > 0 ? (
-                <div className="grid gap-3">{mastered.map(w => <div key={w} className="p-4 bg-emerald-50 border border-emerald-100 rounded-2xl font-bold text-emerald-900">{w}</div>)}</div>
+            {recentlyMastered.length > 0 ? (
+                <div className="grid gap-3">{recentlyMastered.map(w => <div key={w} className="p-4 bg-emerald-50 border border-emerald-100 rounded-2xl font-bold text-emerald-900">{w}</div>)}</div>
             ) : <p className="text-gray-400 italic">Finish your first challenge to see mastered words.</p>}
-        </section>
+          </section>
+        </div>
 
         <section className="mt-16 rounded-3xl border border-red-100 bg-red-50 p-8 shadow-sm">
           <h2 className="mb-2 text-xl font-bold text-red-900">Parent Controls</h2>
-          <p className="mb-4 text-sm text-red-700">Clear all family progress on this device.</p>
-          <button onClick={resetProgress} className="min-h-[44px] rounded-xl bg-red-600 px-6 py-2 font-bold text-white shadow-sm hover:bg-red-700">Reset Progress</button>
-          <p className="mt-6 text-xs text-gray-500">Note: Your family progress is saved on this device. No account is required for this demo. Clearing data will reset all streaks and results.</p>
+          <button onClick={resetProgress} className="rounded-xl bg-red-600 px-6 py-2 font-bold text-white shadow-sm hover:bg-red-700">Reset Progress</button>
         </section>
       </main>
     </div>

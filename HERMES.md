@@ -120,3 +120,13 @@ done
 Hermes should not ask whether to proceed with the next low-risk MVP step after the user has already authorized autonomous MVP development. For this project, creating `/battles` placeholder routing, adding Dashboard links, displaying daily challenge details, and running build/smoke validation are approved low-risk tasks if backups are outside the project tree and no dependencies, secrets, env files, production config, commits, pushes, or destructive operations are involved.
 
 If Hermes finds itself about to ask “是否繼續” for such a low-risk step, it should instead proceed with the smallest coherent implementation stage, then report changes, validation, rollback, limitations, and training record location.
+
+## Family Vocab Game - Product Operating Protocol
+- 本專案是 Family Vocab Game，定位為「每天 5 分鐘的親子英文學習平台」，不僅是單字測驗應用。
+- 每次修改前必須先檢查 Git 狀態 (`git status`) 與相關核心檔案內容 (`cat` 或 `read_file`)。
+- 嚴格限制：不得新增 npm 依賴、不得修改部署機密 (secrets/env)、不得執行 `git push`，除非經明確批准。
+- 每輪任務執行前必須明確列出「本輪要做事項 (To Do)」與「不做事項 (Not To Do)」。
+- 每次程式碼變更後，必須強制執行 `npm run build` 進行靜態建置驗證。
+- 網站功能任務必須驗證 `/`、`/dashboard`、`/battles` 三個核心路徑。
+- 響應式佈局 (RWD) 任務必須驗證 viewport: 375, 390, 430, 768, 1440px，並強制回報：`innerWidth`, `scrollWidth` 與 `overflow` 狀態。
+- 所有交付成果必須包含：修改檔案清單、驗證測試結果、潛在風險分析與下一步建議。
