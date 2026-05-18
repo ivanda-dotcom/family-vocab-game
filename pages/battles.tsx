@@ -25,8 +25,18 @@ export default function Battles() {
 
   const speakWord = (word: string) => {
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel(); // 取消當前正在發音的內容
       const utter = new SpeechSynthesisUtterance(word);
       utter.lang = 'en-US';
+      utter.rate = 0.8; // 稍微調慢語速，聽起來比較溫和
+      utter.pitch = 1.0;
+      utter.volume = 1;
+      
+      // 嘗試找比較自然的語音
+      const voices = window.speechSynthesis.getVoices();
+      const preferredVoice = voices.find(v => v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('Daniel'));
+      if (preferredVoice) utter.voice = preferredVoice;
+
       window.speechSynthesis.speak(utter);
     } else {
       setSpeechErr(true);
@@ -162,7 +172,16 @@ export default function Battles() {
 
             <div className="grid gap-3 mb-6">
               {[true, false].map((isCorrect, i) => (
-                <button key={i} disabled={!!feedback} onClick={() => handleAnswer(isCorrect, i)} className={`min-h-[48px] p-5 rounded-2xl border-2 font-bold text-left transition ${selectedOpt === i ? (isCorrect ? 'border-emerald-200 bg-emerald-50 text-emerald-800' : 'border-orange-200 bg-orange-50 text-orange-800') : 'border-indigo-100 bg-white hover:border-indigo-400'}`}>
+                <button 
+                  key={i} 
+                  disabled={!!feedback} 
+                  onClick={() => handleAnswer(isCorrect, i)} 
+                  className={`min-h-[64px] p-6 rounded-2xl border-2 font-bold text-left transition ${
+                    selectedOpt === i 
+                      ? (isCorrect ? 'border-emerald-500 bg-emerald-50 text-emerald-900' : 'border-orange-500 bg-orange-50 text-orange-900') 
+                      : 'border-gray-300 bg-white text-gray-900 hover:border-indigo-500 hover:shadow-md'
+                  }`}
+                >
                   {isCorrect ? questions[currentIdx].definition : VOCAB_DATA[(currentIdx + 1) % VOCAB_DATA.length].definition}
                 </button>
               ))}
